@@ -40,7 +40,7 @@ is tranlated to
   T.f x1 ... v ... xN
 where v is put at the positiion of the first parameter of type T in T.f's definition.
 Here T = List, f = map, x1 = fun n => n^2, v = [1,2,3,4], and
-v.f x1 tranlates to T.f x1 v
+v.f x1 translates to T.f x1 v
 -/
 
 -- The types of the items in the input and output lists for map may be different.
