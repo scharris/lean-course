@@ -3,7 +3,8 @@
 
 - 9: Write a function **find?** to find an item satisfying
 a predicate in a given list of items of arbitrary type α,
-or returns Option.none if no such item is found.
+or returns Option.none if no such item is found. Here a
+predicate means a function α → boolean.
 
 - 10: Create a function **count** that for a given list
 of α items, counts the number of items satisfying a
