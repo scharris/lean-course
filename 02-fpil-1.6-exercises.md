@@ -1,29 +1,69 @@
 - 1-8 Do the [exercises at bottom of FPIL 1.6.5](https://lean-lang.org/functional_programming_in_lean/Getting-to-Know-Lean/Polymorphism/#polymorphism-exercises
 ).
 
-- 9: Write a function **find?** to find an item satisfying
-a predicate in a given list of items of arbitrary type α,
-or returns Option.none if no such item is found. Here a
-predicate means a function α → boolean.
+- 9: Write an Option-returning function `find?` that for a given
+predicate and list of items of arbitrary type `α`, returns the
+first item satisfying the predicate if it exists. Here a
+predicate means a function of type `α → Bool`.
 
-- 10: Create a function **count** that for a given list
-of α items, counts the number of items satisfying a
-predicate.
+  Test it as follows:
+  ```lean
+  #eval find? (fun n => Nat.mod n 2 == 0) [1,2,3,4,5] -- some 2
+  #eval find? (fun n => Nat.mod n 9 == 0) [1,2,3,4,5] -- none
+  ```
 
-- 11: Write a function **sum** to find the sum of a list
-of Nats.
+- 10: Create a function `count` that for a given predicate and
+list of items of arbitrary type `α`, returns a `Nat` count of
+the number of items satisfying the predicate.
 
-- 12: Write functions **max?** and **min?** to find the
-maximum and minimum value respectively for a list of Nats,
-returning Option Nat.
+  Test it as follows:
+  ```lean
+  #eval count (fun n => Nat.mod n 2 == 0) [1,2,3,4,5] -- 2
+  #eval count (fun n => Nat.mod n 9 == 0) [1,2,3,4,5] -- 0
+  ```
+
+- 11: Write a function `sumNats` to find the sum of a list
+of Nats. The some of an empty list should be 0.
+  Test it as follows:
+  ```lean
+  #eval sumNats [1,2,3] -- 6
+  #eval sumNats ([] : List Nat) -- 0
+  ```
+
+- 12: Write functions `maxNat?` and `minNat?` to find the maximum
+and minimum value respectively for a list of `Nat`s, returning
+an `Option Nat`.
+  Test these as follows:
+  ```lean
+  #eval maxNat [5,1,2,7,3] -- some 7
+  #eval maxNat ([] : List Nat) -- none
+  #eval minNat [5,1,2,7,3] -- some 1
+  #eval minNat ([] : List Nat) -- none
+  ```
 
 - 13 Next read these [notes about type classes](https://github.com/scharris/lean-course/blob/main/type-classes.lean).
-Then try to write more general functions for **sum**,
-**max?**, and **min?** by introducing a general
-element type α for the list items, and then constraining
-α with appropriate type classes. *Hint: For max and min
-use typeclass Ord which provides access to the
-Ord.compare function.
-  Use it like:
-  #eval compare 1 2 == Ordering.lt
-  (=> true)*
+Then try to write more general functions `sum`, `max?`, and `min?`
+for the functions in problems 11 and 12, by introducing a general
+element type `α` for the list items, and then constraining `α`
+with appropriate type classes.
+
+  *Hint: For `max` and `min` use type class `Ord` which provides
+  access to the `compare` function. Use compare like:*
+  ```lean
+  #eval compare 1 2 == Ordering.lt -- true
+  ```
+
+  Test as follows:
+  ```lean
+  #eval sum [5,1,2,7,3] -- 18
+  #eval sum [5.0,1.0] -- 6.000000
+  #eval sum ([] : List Nat) -- 18
+
+  #eval max [5,1,2,7,3] -- some 7
+  #eval max ["abc", "ab", "i", "cd"] -- some "i"
+  #eval max ([]: List Nat) -- none
+
+  #eval min [5,1,2,7,3] -- some 1
+  #eval min ["abc", "ab", "i", "cd"] -- some "ab"
+  #eval min ([] : List String) -- none
+  ```
