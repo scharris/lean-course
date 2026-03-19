@@ -1,6 +1,6 @@
 section type_classes
 
--- We want to be able to sum the items in a list when the item type supports addition.
+-- As an example, suppose we want to be able to sum the items in a list when the item type supports addition.
 
 -- So we define ...
 def sumNats (l: List Nat) : Nat :=
@@ -13,19 +13,21 @@ def sumFloats (l: List Float) : Float :=
   | [] => 0
   | x::xs => x + sumFloats xs
 
--- The definitions are essentially identical.
--- Do we have to do this for each type that should be summable?
--- Like ints of various sizes, rationals, polynomials, etc?
-
--- Can we not define a sum for any type?
 /-
+The definitions are essentially identical.
+Do we have to do this for each type that should be summable?
+Like rational numbers, vectors, polynomials, etc?
+
+Can we not define a sum for any type?
+-/
 def sum (l: List α) : α := -- does not type check
   match l with
   | [] => 0
   | x::xs => x + sum xs
 
-This fails type-checking because there's no gaurantee that α has
-an addition operation and a zero element.
+/-
+The function above fails type-checking because there's no gaurantee
+that type α supports an addition operation and has a zero element.
 
 Type Classes
 
@@ -47,7 +49,7 @@ that some operations are present for each instance type.
 class Addable (α : Type) where
   plus : α → α → α -- addition for type α
 
--- Any type put into the HasZero type class will have a zero element.
+-- A type in the HasZero type class will have a zero element.
 class HasZero (α : Type) where
   zero: α -- zero element of type α. The expected type is inferred from usage context.
 
@@ -61,7 +63,7 @@ def mysum [Addable α] [HasZero α] (l: List α) : α :=
   | x::xs => Addable.plus x (mysum xs)
 
 /-
-Now we register Nat and Float to be in these classes. When
+Next we register Nat and Float to be in these classes. When
 registering, each operation/element must be tied to a specific
 value appropriate for the type, which must match the signature
 in the type class definition.
@@ -112,9 +114,9 @@ Many important mathematical abstractions are represented as type classes
 in Lean, and they are used heavily in proofs. For example the type
 class Field is defined at
 
-https://leanprover-community.github.io/mathlib4_docs/Mathlib/Algebra/Field/Defs.html#Field)
+https://leanprover-community.github.io/mathlib4_docs/Mathlib/Algebra/Field/Defs.html#Field
 
-class Field(K : Type u) extends CommRing K, DivisionRing K : Type u
+class Field(K : Type u) extends CommRing K, DivisionRing K
 
 Here field is extending two other type classes (type classes can extend
 others) without adding any new operations (it says a field is a
