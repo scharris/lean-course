@@ -26,7 +26,7 @@ written in Haskell, which is one of Lean's infuential
 predecessor languages. Much of Lean's constructs and syntax
 are derived from Haskell, though Haskell does not currently
 support the dependent typing that is necessary for theorem
-proving (though Haskell does have more industry support).
+proving (on the other hand, Haskell does have more industry support).
 The only differences for our purposes are that:
   - Haskell allows repeating the function name for each pattern
   in place of match expressions with `|` (which it also supports),
