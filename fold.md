@@ -23,7 +23,7 @@ from the page marked 355 (first page) through first half of p.358
 ## Haskell Examples
 The `fold` definition and example functions in the paper are
 written in Haskell, which is one of Lean's infuential
-predecessor anguages. Much of Lean's constructs and syntax
+predecessor languages. Much of Lean's constructs and syntax
 are derived from Haskell, though Haskell does not currently
 support the dependent typing that is necessary for theorem
 proving (though Haskell does have more industry support).
