@@ -5,6 +5,19 @@
 and two lists with item types of α and β respectively, and produces
 a List of γ.
 
+  Test it with the following `Point` structure and its `mk` function to
+  construct `Point`s from two `Nat` lists:
+
+  ```lean
+  structure Point where
+    x : Nat
+    y : Nat
+  deriving Repr
+
+  #eval zipWith Point.mk [1,2] [10,20,30]
+  -- [{ x := 1, y := 10 }, { x := 2, y := 20 }]
+  ```
+
 - 10: Create a function `count` that for a given predicate and
 list of items of arbitrary type `α`, returns a `Nat` count of
 the number of items satisfying the predicate.
