@@ -1,16 +1,9 @@
 - 1-8 Do the [exercises at bottom of FPIL 1.6.5](https://lean-lang.org/functional_programming_in_lean/Getting-to-Know-Lean/Polymorphism/#polymorphism-exercises
 ).
 
-- 9: Write an Option-returning function `find?` that for a given
-predicate and list of items of arbitrary type `α`, returns the
-first item satisfying the predicate if it exists. Here a
-predicate means a function of type `α → Bool`.
-
-  Test it as follows:
-  ```lean
-  #eval find? (fun n => Nat.mod n 2 == 0) [1,2,3,4,5] -- some 2
-  #eval find? (fun n => Nat.mod n 9 == 0) [1,2,3,4,5] -- none
-  ```
+- 9: Write a function `zipWith` that takes a function`f : α → β → γ`,
+and two lists with item types of α and β respectively, and produces
+a List of γ.
 
 - 10: Create a function `count` that for a given predicate and
 list of items of arbitrary type `α`, returns a `Nat` count of
