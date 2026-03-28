@@ -62,6 +62,6 @@
 
   - (iii) Using `Exists.elim`.
 
-## 4.6
+## 4.6 Exercises
 
 Do the exercises in [section 4.6](https://leanprover.github.io/theorem_proving_in_lean4/Quantifiers-and-Equality/#Theorem-Proving-in-Lean-4--Quantifiers-and-Equality--Exercises).
