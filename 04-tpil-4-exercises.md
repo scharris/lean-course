@@ -42,7 +42,7 @@
 
   (a) That a number added with itself is even:
   ```lean
-  example (h : even a) : even (a + a) := ...
+  example (a : Nat) : even (a + a) := ...
   ```
   (b) That any multiple of an even number is even:
   ```lean
