@@ -108,14 +108,14 @@ def maxNat : List Nat → Option Nat
 | x::xs =>
     match maxNat xs with
     | none => some x
-    | some m => if compare x m = Ordering.lt then some m else some x
+    | some m => if x < m then some m else some x
 
 def minNat : List Nat → Option Nat
 | [] => none
 | x::xs =>
     match minNat xs with
     | none => some x
-    | some m => if compare x m = Ordering.lt then some x else some m
+    | some m => if x < m then some x else some m
 
 #eval maxNat [5,1,2,7,3] -- some 7
 #eval maxNat ([] : List Nat) -- none
