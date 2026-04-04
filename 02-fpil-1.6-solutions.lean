@@ -87,7 +87,7 @@ deriving Repr
 #eval zipWith Point.mk [1,2] [10,20,30]
 
 -- 10
-def count (pred : α → Bool) : (l : List α) → Nat
+def count (pred : α → Bool) : List α → Nat
 | [] => 0
 | x::xs => if pred x then 1 + count pred xs else count pred xs
 
@@ -95,7 +95,7 @@ def count (pred : α → Bool) : (l : List α) → Nat
 #eval count (fun n => Nat.mod n 9 == 0) [1,2,3,4,5] -- 0
 
 -- 11
-def sumNats : (l : List Nat) → Nat
+def sumNats : List Nat → Nat
 | [] => 0
 | x::xs => x + sumNats xs
 
@@ -103,14 +103,14 @@ def sumNats : (l : List Nat) → Nat
 #eval sumNats ([] : List Nat) -- 0
 
 -- 12
-def maxNat : (l : List Nat) → Option Nat
+def maxNat : List Nat → Option Nat
 | [] => none
 | x::xs =>
     match maxNat xs with
     | none => some x
     | some m => if compare x m = Ordering.lt then some m else some x
 
-def minNat : (l : List Nat) → Option Nat
+def minNat : List Nat → Option Nat
 | [] => none
 | x::xs =>
     match minNat xs with
@@ -124,11 +124,11 @@ def minNat : (l : List Nat) → Option Nat
 
 -- 13
 
-def sum [Zero α] [Add α] : (l : List α) → α
+def sum [Zero α] [Add α] : List α → α
 | [] => 0
 | x::xs => x + sum xs
 
-def max [Ord α] : (l : List α) → Option α
+def max [Ord α] : List α → Option α
 | [] => none
 | x::xs => match max xs with
     | none => some x
@@ -136,7 +136,7 @@ def max [Ord α] : (l : List α) → Option α
         if compare x m = Ordering.lt then some m
         else some x
 
-def min [Ord α] : (l : List α) → Option α
+def min [Ord α] : List α → Option α
 | [] => none
 | x::xs => match min xs with
     | none => some x
